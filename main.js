@@ -76,7 +76,7 @@ products.forEach((item) => {
     </div>
     <div class="details">
         <p class="item-title">${item.title}</p>
-        <p class="price">${item.price}</p>
+        <p class="price">$ ${item.price}</p>
     </div>
     `;
     itemList.appendChild(li)

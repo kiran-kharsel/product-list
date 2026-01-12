@@ -13,6 +13,7 @@ body{
     align-items: center;
     justify-content: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: ;
 }
 
 li{
@@ -24,6 +25,7 @@ li{
 .item-title{
     font-weight: bold;
     font-size: 1rem;
+    margin-bottom: 4px;
 }
 
 .price{
@@ -41,11 +43,6 @@ li{
     grid-template-columns: 2fr 1fr;
 }
 
-.container .list-container{
-    background-color: green;
-
-}
-
 .list-container h1{
     text-transform: capitalize;
     margin-bottom: 50px;
@@ -55,10 +52,16 @@ li{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
+    height: 600px;
+    overflow-y: scroll;
+}
+
+.item-list::-webkit-scrollbar {
+  display: none;
+  width: 0px; /* remove scrollbar space */
 }
 
 .item-list .item{
-    background-color: white;
     height: 240px;
     display: flex;
     flex-direction: column;
