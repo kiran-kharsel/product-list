@@ -61,3 +61,23 @@ const products = [
     img: "https://cleobuttera.com/wp-content/uploads/2018/03/lifted-baklava-720x540.jpg",
   },
 ];
+
+//dom elem
+const itemList = document.querySelector('.item-list')
+
+// loop through array to create dynamic list
+products.forEach((item) => {
+    const li = document.createElement('li');
+    li.classList.add('item')
+    li.innerHTML = `
+    <div class="item-img">
+        <img src=${item.img} alt="item-img">
+        <button class="add"><i class='bx  bx-cart'></i>  add to cart</button>
+    </div>
+    <div class="details">
+        <p class="item-title">${item.title}</p>
+        <p class="price">${item.price}</p>
+    </div>
+    `;
+    itemList.appendChild(li)
+})
