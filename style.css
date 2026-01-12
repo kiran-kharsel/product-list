@@ -33,7 +33,6 @@ li{
 
 
 
-
 .container{
     width: 900px;
     background-color: lightblue;
@@ -49,6 +48,7 @@ li{
 
 .list-container h1{
     text-transform: capitalize;
+    margin-bottom: 50px;
 }
 
 .item-list{
@@ -59,7 +59,7 @@ li{
 
 .item-list .item{
     background-color: white;
-    height: 250px;
+    height: 240px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -67,9 +67,17 @@ li{
 
 .item .item-img{
     width: 100%;
-    height: 150px;
+    height: 160px;
     background-color: red;
+    border-radius: 10px;
     position: relative;
+}
+
+.item-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .item .add{
@@ -79,12 +87,17 @@ li{
     top: 110%;
     transform: translate(-50%, -100%);
     padding: 8px;
-    border: 0;
+    border: 1px solid chocolate;
     outline: 0;
     border-radius: 20px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-transform: capitalize;
 }
 
-.item .details{
-    background-color: magenta;
-
+.item .add i{
+    color: chocolate;
+    font-size: 1.4rem;
 }
