@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
@@ -12,7 +13,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgb(243, 230, 220);
 }
 
@@ -20,6 +20,10 @@ li{
     list-style: none;
 }
 
+i{
+    margin: 0;
+    padding: 0;
+}
 /* utilities class */
 
 .item-title{
@@ -82,49 +86,71 @@ li{
     object-fit: cover;
 }
 
-.item .add{
+.item-img .btn-container{
+    /* background-color: red; */
     width: 120px;
     position: absolute;
-    left: 50%;
     top: 110%;
+    left: 50%;
     transform: translate(-50%, -100%);
-    padding: 8px;
-    border: 1px solid chocolate;
-    outline: 0;
-    border-radius: 20px;
-    background-color: white;
+}
+
+.btn-container button{
+    width: 100%;
+    outline: none;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    text-transform: capitalize;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid chocolate;
+    cursor: pointer;
 }
 
-.item .add i{
+.btn-container button i{
+    font-size: 1.2rem;
     color: chocolate;
-    font-size: 1.4rem;
+}
+
+.btn-container div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid chocolate;
+    cursor: pointer;
+    background-color: chocolate;
+}
+
+.btn-container div span{
+    color: white;
+}
+
+.btn-container div i{
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
 }
 
 
 /* cart */
-.cart-container{
-    background-color: green;
-    
-}
 
 .cart-container .cart{
     background-color: white;
     width: 100%;
-    height: 400px;
     padding: 0px 20px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    border-radius: 10px;
 }
 
 .cart h2{
     color: chocolate;
 }
-
 
 
 .cart ul li{
@@ -139,15 +165,16 @@ li{
     text-transform: capitalize;
     margin-bottom: 4px;
 }
+
 .cart ul li .item-cancel{
-    border: 1px solid grey;
-    outline: 0;
-    border-radius: 20px;
     cursor: pointer;
+    outline: 0;
+    border: 0;
+    background: transparent;
 }
 
 .item-cancel i{
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 
 .item-detail > div .quantity{
@@ -158,5 +185,29 @@ li{
 .item-detail > div .price{
     color: grey;
     font-weight: 400;
-    margin-right: 10px;
+}
+
+.total-price{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.total-price p{
+    text-transform: capitalize;
+}
+.total-price span{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.confirm-order{
+    padding: 10px 0px;
+    color: white;
+    background-color: chocolate;
+    text-transform: capitalize;
+    outline: 0;
+    border: 1px solid chocolate;
+    border-radius: 20px;
+    cursor: pointer;
 }
