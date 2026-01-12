@@ -98,7 +98,6 @@ products.forEach((item) => {
 
 
 function addItems(elem){
-  console.log(elem.parentElement)
   let btnContainer = elem.parentElement
   // change btn content
   changeBtnContent(btnContainer);
@@ -119,34 +118,70 @@ function addItems(elem){
 // change button content
 function changeBtnContent(btnContainer) {
   cartItems++;
-  btnContainer.innerHTML = `
+  updateBtnContent(btnContainer)
+
+  // const increaseQuantityBtn = btnContainer.querySelector(".increase");
+  // const decreaseQuantityBtn = btnContainer.querySelector(".decrease");
+
+  // console.log(increaseQuantityBtn)
+
+  // increaseQuantityBtn.addEventListener("click", function () {
+  //   console.log('working')
+  //   cartItems++;
+  //   updateBtnContent(btnContainer)
+  //   console.log(cartItems)
+
+  //   //update in cart
+  // });
+
+  // decreaseQuantityBtn.addEventListener("click", function () {
+  //   cartItems--;
+  //   updateBtnContent(btnContainer)
+  //   //update in cart
+
+  //   // if equal to 0, change content, remove from cart
+  //   if (cartItems === 0) {
+  //     btnContainer.innerHTML = `
+  //     <button onclick="addItems(this)" class="add">
+  //     <i class='bx  bx-cart'></i>
+  //     <span>add to cart</span>
+  //     </button>`;
+  //   }
+  // });
+}
+
+
+
+// update innerhtml
+function updateBtnContent(elem){
+  elem.innerHTML = `
   <div>
-  <i role="button" class='bx  bx-minus-circle decrease'></i> 
+  <i role="button" onclick="removeItems(this)"  class='bx  bx-minus-circle decrease'></i> 
   <span>${cartItems}</span>
-  <i role="button" class='bx  bx-plus-circle increase'></i> 
+  <i role="button" onclick="add(this)" class='bx  bx-plus-circle increase'></i> 
   </div>
   `;
+};
 
-  const increaseQuantityBtn = btnContainer.querySelector("div .increase");
-  const decreaseQuantityBtn = btnContainer.querySelector("div .decrease");
 
-  increaseQuantityBtn.addEventListener("click", function () {
-    cartItems++;
-    console.log(cartItems)
-    //update in cart
-  });
 
-  decreaseQuantityBtn.addEventListener("click", function () {
-    cartItems--;
-    //update in cart
+// add items and remove items
+function add(elem){
+  cartItems++;
+  updateBtnContent(elem.parentElement.parentElement)
+}
 
-    // if equal to 0, change content, remove from cart
-    if (cartItems === 0) {
-      btnContainer.innerHTML = `
+
+function removeItems(elem){
+  cartItems--;
+  if(cartItems === 0){
+    elem.parentElement.parentElement.innerHTML = `
       <button onclick="addItems(this)" class="add">
       <i class='bx  bx-cart'></i>
       <span>add to cart</span>
-      </button>`;
-    }
-  });
+      </button>
+    `;
+  }else{
+    updateBtnContent(elem.parentElement.parentElement)
+  }
 }
