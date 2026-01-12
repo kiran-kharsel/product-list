@@ -65,6 +65,11 @@ const products = [
 //dom elem
 const itemList = document.querySelector('.item-list')
 
+
+
+// global variables
+let cartItems = 0;
+
 // loop through array to create dynamic list
 products.forEach((item) => {
     const li = document.createElement('li');
@@ -72,12 +77,37 @@ products.forEach((item) => {
     li.innerHTML = `
     <div class="item-img">
         <img src=${item.img} alt="item-img">
-        <button class="add"><i class='bx  bx-cart'></i>  add to cart</button>
+        <div class="btn-container">
+          <button class="add"><i class='bx  bx-cart'></i><span>add to cart</span></button>
+        </div>
     </div>
     <div class="details">
         <p class="item-title">${item.title}</p>
         <p class="price">$ ${item.price}</p>
     </div>
     `;
-    itemList.appendChild(li)
-})
+    itemList.appendChild(li);
+
+    const addToCartBtn = li.querySelector('.add');
+    addToCartBtn.addEventListener('click', function(){
+      // change inner content
+      changeBtnContent(addToCartBtn)
+      // add to cart component
+    })
+});
+
+
+// change button content
+function changeBtnContent(btn){
+  cartItems++;
+  btn.parentElement.innerHTML = `
+  <div>
+  <i role="button" class='bx  bx-minus-circle decrease'></i> 
+  <span>${cartItems}</span>
+  <i role="button" class='bx  bx-plus-circle increase'></i> 
+  </div>
+  `;
+
+  const increaseQuantityBtn = btn.parentElement.querySelector('.increase')
+  const decreaseQuantityBtn = btn.parentElement.querySelector('.decrease')
+}
