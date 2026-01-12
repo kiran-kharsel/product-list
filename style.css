@@ -13,7 +13,7 @@ body{
     align-items: center;
     justify-content: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: ;
+    background-color: rgb(243, 230, 220);
 }
 
 li{
@@ -37,7 +37,6 @@ li{
 
 .container{
     width: 900px;
-    background-color: lightblue;
     padding: 15px;
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -71,8 +70,6 @@ li{
 .item .item-img{
     width: 100%;
     height: 160px;
-    background-color: red;
-    border-radius: 10px;
     position: relative;
 }
 
