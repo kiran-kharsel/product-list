@@ -63,22 +63,20 @@ const products = [
 ];
 
 //dom elem
-const itemList = document.querySelector('.item-list')
-
-
+const itemList = document.querySelector(".item-list");
 
 // global variables
 let cartItems = 0;
 
 // loop through array to create dynamic list
 products.forEach((item) => {
-    const li = document.createElement('li');
-    li.classList.add('item')
-    li.innerHTML = `
+  const li = document.createElement("li");
+  li.classList.add("item");
+  li.innerHTML = `
     <div class="item-img">
         <img src=${item.img} alt="item-img">
         <div class="btn-container">
-          <button class="add"><i class='bx  bx-cart'></i><span>add to cart</span></button>
+          <button onclick="addItems(this)" class="add"><i class='bx  bx-cart'></i><span>add to cart</span></button>
         </div>
     </div>
     <div class="details">
@@ -86,21 +84,42 @@ products.forEach((item) => {
         <p class="price">$ ${item.price}</p>
     </div>
     `;
-    itemList.appendChild(li);
+  itemList.appendChild(li);
 
-    const addToCartBtn = li.querySelector('.add');
-    addToCartBtn.addEventListener('click', function(){
-      // change inner content
-      changeBtnContent(addToCartBtn)
-      // add to cart component
-    })
+  // const addToCartBtn = li.querySelector(".add");
+  // const btnContainer = li.querySelector(".btn-container");
+  // addToCartBtn.addEventListener("click", function () {
+  //   console.log('click')
+  //   // change inner content
+  //   changeBtnContent(btnContainer);
+  //   // add to cart component
+  // });
 });
 
 
+function addItems(elem){
+  console.log(elem.parentElement)
+  let btnContainer = elem.parentElement
+  // change btn content
+  changeBtnContent(btnContainer);
+  // addtocart
+}
+
+
+
+
+
+
+
+
+
+
+
+
 // change button content
-function changeBtnContent(btn){
+function changeBtnContent(btnContainer) {
   cartItems++;
-  btn.parentElement.innerHTML = `
+  btnContainer.innerHTML = `
   <div>
   <i role="button" class='bx  bx-minus-circle decrease'></i> 
   <span>${cartItems}</span>
@@ -108,6 +127,26 @@ function changeBtnContent(btn){
   </div>
   `;
 
-  const increaseQuantityBtn = btn.parentElement.querySelector('.increase')
-  const decreaseQuantityBtn = btn.parentElement.querySelector('.decrease')
+  const increaseQuantityBtn = btnContainer.querySelector("div .increase");
+  const decreaseQuantityBtn = btnContainer.querySelector("div .decrease");
+
+  increaseQuantityBtn.addEventListener("click", function () {
+    cartItems++;
+    console.log(cartItems)
+    //update in cart
+  });
+
+  decreaseQuantityBtn.addEventListener("click", function () {
+    cartItems--;
+    //update in cart
+
+    // if equal to 0, change content, remove from cart
+    if (cartItems === 0) {
+      btnContainer.innerHTML = `
+      <button onclick="addItems(this)" class="add">
+      <i class='bx  bx-cart'></i>
+      <span>add to cart</span>
+      </button>`;
+    }
+  });
 }
