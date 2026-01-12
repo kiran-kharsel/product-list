@@ -24,7 +24,7 @@ li{
 
 .item-title{
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin-bottom: 4px;
 }
 
@@ -34,12 +34,14 @@ li{
 }
 
 
+/* list */
 
 .container{
     width: 900px;
     padding: 15px;
     display: grid;
     grid-template-columns: 2fr 1fr;
+    gap: 30px;
 }
 
 .list-container h1{
@@ -100,4 +102,61 @@ li{
 .item .add i{
     color: chocolate;
     font-size: 1.4rem;
+}
+
+
+/* cart */
+.cart-container{
+    background-color: green;
+    
+}
+
+.cart-container .cart{
+    background-color: white;
+    width: 100%;
+    height: 400px;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart h2{
+    color: chocolate;
+}
+
+
+
+.cart ul li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.item-detail .title{
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: 4px;
+}
+.cart ul li .item-cancel{
+    border: 1px solid grey;
+    outline: 0;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.item-cancel i{
+    font-size: 1.3rem;
+}
+
+.item-detail > div .quantity{
+    color: chocolate;
+    margin-right: 10px;
+}
+
+.item-detail > div .price{
+    color: grey;
+    font-weight: 400;
+    margin-right: 10px;
 }
