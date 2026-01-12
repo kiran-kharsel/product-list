@@ -12,20 +12,33 @@
     <div class="container">
         <div class="list-container">
             <h1 class="heading">desserts</h1>
-            <ul class="item-list">
-                <!-- <li class="item">
-                    <div class="item-img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcf2A7GsnCKm3SgMnMGHO4cddVaCoYsj3OIQ&s" alt="item-img">
-                        <button class="add"><i class='bx  bx-cart'></i>  add to cart</button>
-                    </div>
-                    <div class="details">
-                        <p class="item-title">waffel with berries</p>
-                        <p class="price">$6.50</p>
-                    </div>
-                </li> -->
-            </ul>
+            <ul class="item-list"></ul>
         </div>
-        <div class="cart-container"></div>
+        <div class="cart-container">
+            <div class="cart">
+                <h2 class="cart-heading"> your cart <span>(7)</span></h2>
+            </div>
+            <ul class="cart-list">
+                <li class="cart-item">
+                    <div class="item-detail">
+                        <p class="title">tiramisu</p>
+                        <div>
+                            <span class="quantity">1x</span>
+                            <span class="price">5.50</span>
+                            <span class="total">5.50</span>
+                        </div>
+                    </div>
+                    <button class="item-cancel">
+                        <i class='bx  bx-x'></i> 
+                    </button>
+                </li>
+            </ul>
+            <div class="total-price">
+                <p>order total</p>
+                <span>5.50</span>
+            </div>
+            <button class="confirm-order">confirm order</button>
+        </div>
     </div>
 </body>
 </html>
