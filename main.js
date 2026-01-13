@@ -102,7 +102,8 @@ function addToCart(id){
   // add to cartitems
   if(cartItems.some(item => item.id === id)){
     console.log('already present')
-    
+    selectedItem[0].quantity += 1;
+    updateCart();
   }else{
     console.log('new entry to cart item')
     selectedItem[0].quantity = 1;
