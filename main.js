@@ -135,7 +135,7 @@ function updateCart(){
           <span class="total">${item.price * item.quantity} </span>
         </div>
       </div>
-      <button class="item-cancel">
+      <button onclick="cancelItem(${item.id})" class="item-cancel">
           <i class='bx  bx-x-circle'></i> 
       </button>`;
 
@@ -145,4 +145,12 @@ function updateCart(){
 
   quantity.innerText = `(${count})`;
   totalPriceElem.innerText = totalPrice.toLocaleString()
+};
+
+
+
+// cancel item
+function cancelItem(id){
+  cartItems = cartItems.filter((item) => item.id !== id);
+  updateCart();
 }
