@@ -66,7 +66,8 @@ const products = [
 // dom elem
 const itemList = document.querySelector('.item-list')
 
-
+// global 
+let cartItems = [];
 
 // create product list
 products.forEach((item) => {
@@ -85,3 +86,24 @@ products.forEach((item) => {
 
   itemList.appendChild(li)
 })
+
+
+// function add to cart
+function addToCart(id){
+  console.log(id)
+
+  // filter items from list
+  let selectedItem = products.filter((item) => item.id === id)
+  console.log(...selectedItem)
+  // add to cartitems
+  if(cartItems.some(item => item.id === id)){
+    console.log('already present')
+    
+  }else{
+    console.log('new entry to cart item')
+    cartItems.push(...selectedItem)
+    console.log(cartItems)
+  }
+
+  
+};
