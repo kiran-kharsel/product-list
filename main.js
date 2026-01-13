@@ -62,3 +62,26 @@ const products = [
   },
 ];
 
+
+// dom elem
+const itemList = document.querySelector('.item-list')
+
+
+
+// create product list
+products.forEach((item) => {
+  let li = document.createElement('li');
+  li.classList.add('item')
+  li.innerHTML = `
+   <div class="item-img">
+      <img src="${item.img}" alt="item-img">
+      <button onclick="addToCart(${item.id})" class="add"><i class='bx  bx-cart'></i>  add to cart</button>
+    </div>
+    <div class="details">
+      <p class="item-title">${item.title}</p>
+      <p class="price">$${item.price}</p>
+    </div>
+  `;
+
+  itemList.appendChild(li)
+})
