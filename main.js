@@ -65,6 +65,9 @@ const products = [
 
 // dom elem
 const itemList = document.querySelector('.item-list')
+const cartList = document.querySelector('.cart-list')
+const quantity = document.querySelector('.cart-heading span')
+const totalPriceElem = document.querySelector('.total-price span')
 
 // global 
 let cartItems = [];
@@ -90,20 +93,56 @@ products.forEach((item) => {
 
 // function add to cart
 function addToCart(id){
-  console.log(id)
 
   // filter items from list
   let selectedItem = products.filter((item) => item.id === id)
-  console.log(...selectedItem)
+
+  
+  
   // add to cartitems
   if(cartItems.some(item => item.id === id)){
     console.log('already present')
     
   }else{
     console.log('new entry to cart item')
+    selectedItem[0].quantity = 1;
     cartItems.push(...selectedItem)
     console.log(cartItems)
+    updateCart()
   }
-
   
 };
+
+
+// update cart ui
+function updateCart(){
+  cartList.innerHTML = '';
+  let count = 0;
+  let totalPrice = 0
+  cartItems.forEach((item) => {
+    count = count + item.quantity;
+    totalPrice = totalPrice + item.price;
+
+    if(item != null){
+      let li = document.createElement('li');
+      li.classList.add('cart-item')
+      li.innerHTML = `
+      <div class="item-detail">
+        <p class="title">${item.title}</p>
+        <div>
+          <span class="quantity">${item.quantity}</span>
+          <span class="price">${item.price}</span>
+          <span class="total">${item.price * item.quantity} </span>
+        </div>
+      </div>
+      <button class="item-cancel">
+          <i class='bx  bx-x-circle'></i> 
+      </button>`;
+
+      cartList.appendChild(li)
+    }
+  });
+
+  quantity.innerText = `(${count})`;
+  totalPriceElem.innerText = totalPrice.toLocaleString()
+}
