@@ -65,8 +65,6 @@ const products = [
 //dom elem
 const itemList = document.querySelector(".item-list");
 
-// global variables
-let cartItems = 0;
 
 // loop through array to create dynamic list
 products.forEach((item) => {
@@ -86,14 +84,6 @@ products.forEach((item) => {
     `;
   itemList.appendChild(li);
 
-  // const addToCartBtn = li.querySelector(".add");
-  // const btnContainer = li.querySelector(".btn-container");
-  // addToCartBtn.addEventListener("click", function () {
-  //   console.log('click')
-  //   // change inner content
-  //   changeBtnContent(btnContainer);
-  //   // add to cart component
-  // });
 });
 
 
@@ -120,7 +110,6 @@ function addItems(elem){
 // change button content
 function changeBtnContent(btnContainer, selectedItem) {
   selectedItem++
-  //cartItems++;
   updateBtnContent(btnContainer, selectedItem)
 }
 
@@ -144,8 +133,6 @@ function add(elem){
   console.log(+elem.previousElementSibling.innerHTML)
   let prevNum = Number(elem.previousElementSibling.innerHTML);
   prevNum++;
-  //elem.previousElementSibling.innerHTML += 1;
-  //cartItems++;
   updateBtnContent(elem.parentElement.parentElement, prevNum)
 }
 
