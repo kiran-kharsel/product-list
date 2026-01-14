@@ -179,7 +179,6 @@ function decreaseQuantity(elem, id){
 
   showCart()
 
-
 }
 
 
@@ -216,4 +215,26 @@ function showCart(){
 
   quantity.innerText = `(${count})`;
   totalPriceElem.innerText = `$${totalPrice.toLocaleString()}`
+}
+
+
+// cancel item function
+function cancelItem(id){
+  console.log(id)
+  // rmove from array
+  cartItems = cartItems.filter((item) => item.id !== id)
+  // update ui
+  showCart();
+  // change button 
+  products.forEach((item,index)=> {
+    if(item.id === id){
+      // select all btn container
+      btnContainer = document.querySelectorAll('.btn-container')
+
+
+      // hide btn elem
+      btnContainer[index].querySelector('.add').classList.remove('hidden')
+      btnContainer[index].querySelector('div').classList.add('hidden')
+    }
+  })
 }
