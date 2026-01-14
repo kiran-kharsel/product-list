@@ -136,11 +136,17 @@ function addToCart(itemId, index){
 // function increase or decrease item quantity
 function increaseQuantity(elem, id){
   // update quantity in object
-  cartItems[id].quantity += 1
+  cartItems = cartItems.map((item) => {
+    return item.id === id ? {...item, quantity: item.quantity + 1} : item;
+  });
 
+
+  // find object
+  const item = cartItems.find((item) => item.id === id)
   // update in span
-  elem.previousElementSibling.innerText = cartItems[id].quantity
+  elem.previousElementSibling.innerText = item.quantity
 
+  
   // also update in cart item quantty
   showCart()
   
@@ -148,7 +154,7 @@ function increaseQuantity(elem, id){
 
 function decreaseQuantity(elem, id){
 
-  console.log(elem)
+  // change button class
   elem.parentElement.classList.add('hidden')
   elem.parentElement.previousElementSibling.classList.remove('hidden')
   
