@@ -128,8 +128,6 @@ function addToCart(itemId, index){
   // update cart
   showCart()
 
-  console.log(cartItems)
-
 }
 
 
@@ -140,33 +138,46 @@ function increaseQuantity(elem, id){
     return item.id === id ? {...item, quantity: item.quantity + 1} : item;
   });
 
+  console.log(cartItems)
+
 
   // find object
   const item = cartItems.find((item) => item.id === id)
   // update in span
   elem.previousElementSibling.innerText = item.quantity
 
-  
+
   // also update in cart item quantty
   showCart()
   
 }
 
 function decreaseQuantity(elem, id){
-
-  // change button class
-  elem.parentElement.classList.add('hidden')
-  elem.parentElement.previousElementSibling.classList.remove('hidden')
   
   // update quantity in object
   cartItems = cartItems.map((item) => {
     return item.id === id ? {...item, quantity: item.quantity - 1} : item;
   });
 
+  console.log(cartItems)
+
+  // find object
+  const item = cartItems.find((item) => item.id === id)
+  if(item.quantity > 0){
+     // update in span
+    elem.nextElementSibling.innerText = item.quantity
+  } else {
+    // change button class
+    elem.parentElement.classList.add('hidden')
+    elem.parentElement.previousElementSibling.classList.remove('hidden')
+  }
+
   // filter out if quantity is zero
   cartItems = cartItems.filter((item) => item.quantity !== 0)
 
   showCart()
+
+  
   
 }
 
