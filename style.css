@@ -95,6 +95,10 @@ i{
     transform: translate(-50%, -100%);
 }
 
+.btn-container .hidden{
+    display: none;
+}
+
 .btn-container button{
     width: 100%;
     outline: none;
@@ -123,6 +127,8 @@ i{
     cursor: pointer;
     background-color: chocolate;
 }
+
+
 
 .btn-container div span{
     color: white;
