@@ -87,9 +87,9 @@ products.forEach((item, index) => {
     <div class="btn-container">
       <button onclick="addToCart(${item.id}, ${index})" class="add"><i class='bx  bx-cart'></i>  add to cart</button>
       <div class="hidden">
-        <i onclick="decreaseQuantity(this, ${index})" role="button" class='bx  bx-minus-circle'></i> 
+        <i onclick="decreaseQuantity(this, ${item.id})" role="button" class='bx  bx-minus-circle'></i> 
         <span>2</span>
-        <i onclick="increaseQuantity(this, ${index})" role="button" class='bx  bx-plus-circle'></i> 
+        <i onclick="increaseQuantity(this, ${item.id})" role="button" class='bx  bx-plus-circle'></i> 
       </div>
     </div>
   </div>
@@ -128,6 +128,7 @@ function addToCart(itemId, index){
   // update cart
   showCart()
 
+  console.log(cartItems)
 
 }
 
@@ -146,21 +147,16 @@ function increaseQuantity(elem, id){
 }
 
 function decreaseQuantity(elem, id){
+
+  
   // update quantity in object
-  cartItems[id].quantity -= 1
+  cartItems = cartItems.map((item) => {
+    return item.id === id ? {...item, quantity: item.quantity - 1} : item;
+  });
 
-  // if quantity is zero change btn class
-  if(cartItems[id].quantity === 0){
-    elem.parentElement.classList.add('hidden')
-    elem.parentElement.previousElementSibling.classList.remove('hidden')
+  // filter out if quantity is zero
+  cartItems = cartItems.filter((item) => item.quantity !== 0)
 
-    // remove from cart item
-  }
-
-  // update in span
-  elem.nextElementSibling.innerText = cartItems[id].quantity
-
-  // also update in cart item quantty
   showCart()
   
 }
