@@ -140,8 +140,6 @@ function increaseQuantity(elem, id){
     return item.id === id ? {...item, quantity: item.quantity + 1} : item;
   });
 
-  console.log(cartItems)
-
 
   // find object
   const item = cartItems.find((item) => item.id === id)
@@ -161,7 +159,6 @@ function decreaseQuantity(elem, id){
     return item.id === id ? {...item, quantity: item.quantity - 1} : item;
   });
 
-  console.log(cartItems)
 
   // find object
   const item = cartItems.find((item) => item.id === id)
@@ -220,17 +217,17 @@ function showCart(){
 
 // cancel item function
 function cancelItem(id){
-  console.log(id)
-  // rmove from array
+  // remove from array
   cartItems = cartItems.filter((item) => item.id !== id)
+
   // update ui
   showCart();
+  
   // change button 
   products.forEach((item,index)=> {
     if(item.id === id){
       // select all btn container
       btnContainer = document.querySelectorAll('.btn-container')
-
 
       // hide btn elem
       btnContainer[index].querySelector('.add').classList.remove('hidden')
