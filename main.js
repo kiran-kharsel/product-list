@@ -201,8 +201,8 @@ function showCart(){
       <div class="item-detail">
         <p class="title">${item.title}</p>
         <div>
-          <span class="quantity">${item.quantity}</span>
-          <span class="price">${item.price}</span>
+          <span class="quantity">${item.quantity}x</span>
+          <span class="price">@${item.price}</span>
           <span class="total">${item.price * item.quantity} </span>
         </div>
       </div>
@@ -215,5 +215,5 @@ function showCart(){
   });
 
   quantity.innerText = `(${count})`;
-  totalPriceElem.innerText = totalPrice.toLocaleString()
+  totalPriceElem.innerText = `$${totalPrice.toLocaleString()}`
 }
