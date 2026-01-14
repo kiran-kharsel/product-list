@@ -1,5 +1,3 @@
-// const btnContainer = document.querySelector('.btn-container')
-
 
 
 // product array
@@ -69,21 +67,26 @@ const products = [
 
 
 // dom elem
-const itemList = document.querySelector('.item-list')
+const itemList = document.querySelector('.item-list');
+// const btnContainer = document.querySelector('.btn-container')
+
+
+// global vaariable
+let cartItems = [];
 
 // loop through array to create dynamic list html
-products.forEach((item) => {
+products.forEach((item, index) => {
   let li = document.createElement('li');
   li.classList.add('item');
   li.innerHTML = `
   <div class="item-img">
     <img src=${item.img} alt="item-img">
     <div class="btn-container">
-      <button onclick="addToCart(${item.id})" class="add"><i class='bx  bx-cart'></i>  add to cart</button>
+      <button onclick="addToCart(${item.id}, ${index})" class="add"><i class='bx  bx-cart'></i>  add to cart</button>
       <div class="hidden">
-        <i onclick="increaseQuantity()" role="button" class='bx  bx-minus-circle'></i> 
+        <i onclick="decreaseQuantity()" role="button" class='bx  bx-minus-circle'></i> 
         <span>2</span>
-        <i onclick="decreaseQuantity()" role="button" class='bx  bx-plus-circle'></i> 
+        <i onclick="increaseQuantity(this, ${index})" role="button" class='bx  bx-plus-circle'></i> 
       </div>
     </div>
   </div>
@@ -97,15 +100,55 @@ products.forEach((item) => {
 })
 
 
-function addToCart(itemId){
-  console.log('add to cart')
-  btnContainer = document.querySelector('.btn-container')
-  // hide byn elem
-  btnContainer.querySelector('.add').classList.add('hidden')
-  btnContainer.querySelector('div').classList.remove('hidden')
+function addToCart(itemId, index){
+  
+  // quantity variable
+  let itemQuantity = 1;
 
-  // show new btns div
+  // select all btn container
+  btnContainer = document.querySelectorAll('.btn-container')
+
+
+  // hide btn elem
+  btnContainer[index].querySelector('.add').classList.add('hidden')
+  btnContainer[index].querySelector('div').classList.remove('hidden')
+
+  //set initial quantity
+  btnContainer[index].querySelector('div span').innerText = itemQuantity
+
+
+  //select same item as id
+  let selectedItem = products.filter((item) => item.id === itemId)
+  selectedItem[0].quantity = itemQuantity;
+  cartItems.push(...selectedItem)
+  console.log(cartItems)
+
+  // // add to cartitems
+  // if(cartItems.some(item => item.id === itemId)){
+  //   console.log('already present')
+  //   selectedItem[0].quantity += 1;
+  //   //updateCart();
+  // }else{
+  //   console.log('new entry to cart item')
+  //   selectedItem[0].quantity = 1;
+  //   cartItems.push(...selectedItem)
+  //   console.log(cartItems)
+  //   //updateCart()
+  // }
+
+
 }
 
 
-// function change button
+// function increase or decrease item quantity
+function increaseQuantity(elem, id){
+  // update quantity in object
+  cartItems[id].quantity += 1
+
+  // update in span
+  elem.previousElementSibling.innerText = cartItems[id].quantity
+
+  // also update in cart item quantty
+  console.log('increase quantity')
+  
+}
