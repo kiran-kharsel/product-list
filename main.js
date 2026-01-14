@@ -84,7 +84,7 @@ products.forEach((item, index) => {
     <div class="btn-container">
       <button onclick="addToCart(${item.id}, ${index})" class="add"><i class='bx  bx-cart'></i>  add to cart</button>
       <div class="hidden">
-        <i onclick="decreaseQuantity()" role="button" class='bx  bx-minus-circle'></i> 
+        <i onclick="decreaseQuantity(this, ${index})" role="button" class='bx  bx-minus-circle'></i> 
         <span>2</span>
         <i onclick="increaseQuantity(this, ${index})" role="button" class='bx  bx-plus-circle'></i> 
       </div>
@@ -123,19 +123,6 @@ function addToCart(itemId, index){
   cartItems.push(...selectedItem)
   console.log(cartItems)
 
-  // // add to cartitems
-  // if(cartItems.some(item => item.id === itemId)){
-  //   console.log('already present')
-  //   selectedItem[0].quantity += 1;
-  //   //updateCart();
-  // }else{
-  //   console.log('new entry to cart item')
-  //   selectedItem[0].quantity = 1;
-  //   cartItems.push(...selectedItem)
-  //   console.log(cartItems)
-  //   //updateCart()
-  // }
-
 
 }
 
@@ -150,5 +137,25 @@ function increaseQuantity(elem, id){
 
   // also update in cart item quantty
   console.log('increase quantity')
+  
+}
+
+function decreaseQuantity(elem, id){
+  // update quantity in object
+  cartItems[id].quantity -= 1
+
+  // if quantity is zero change btn class
+  if(cartItems[id].quantity === 0){
+    elem.parentElement.classList.add('hidden')
+    elem.parentElement.previousElementSibling.classList.remove('hidden')
+
+    // remove from cart item
+  }
+
+  // update in span
+  elem.nextElementSibling.innerText = cartItems[id].quantity
+
+  // also update in cart item quantty
+  console.log('decrease quantity')
   
 }
