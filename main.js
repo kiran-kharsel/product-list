@@ -68,7 +68,10 @@ const products = [
 
 // dom elem
 const itemList = document.querySelector('.item-list');
-// const btnContainer = document.querySelector('.btn-container')
+const cartList = document.querySelector('.cart-list')
+const quantity = document.querySelector('.cart-heading span')
+const totalPriceElem = document.querySelector('.total-price span')
+const cart = document.querySelector('.cart')
 
 
 // global vaariable
@@ -121,7 +124,9 @@ function addToCart(itemId, index){
   let selectedItem = products.filter((item) => item.id === itemId)
   selectedItem[0].quantity = itemQuantity;
   cartItems.push(...selectedItem)
-  console.log(cartItems)
+
+  // update cart
+  showCart()
 
 
 }
@@ -158,4 +163,40 @@ function decreaseQuantity(elem, id){
   // also update in cart item quantty
   console.log('decrease quantity')
   
+}
+
+
+
+// function to show cart ui
+function showCart(){
+  cartList.innerHTML = '';
+  let count = 0;
+  let totalPrice = 0;
+
+  cartItems.forEach((item) => {
+    count = count + item.quantity;
+    totalPrice = totalPrice + item.price;
+
+    if(item != null){
+      let li = document.createElement('li');
+      li.classList.add('cart-item')
+      li.innerHTML = `
+      <div class="item-detail">
+        <p class="title">${item.title}</p>
+        <div>
+          <span class="quantity">${item.quantity}</span>
+          <span class="price">${item.price}</span>
+          <span class="total">${item.price * item.quantity} </span>
+        </div>
+      </div>
+      <button onclick="cancelItem(${item.id})" class="item-cancel">
+          <i class='bx  bx-x-circle'></i> 
+      </button>`;
+
+      cartList.appendChild(li)
+    }
+  });
+
+  quantity.innerText = `(${count})`;
+  totalPriceElem.innerText = totalPrice.toLocaleString()
 }
