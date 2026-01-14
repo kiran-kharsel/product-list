@@ -77,6 +77,8 @@ const cart = document.querySelector('.cart')
 // global vaariable
 let cartItems = [];
 
+
+
 // loop through array to create dynamic list html
 products.forEach((item, index) => {
   let li = document.createElement('li');
@@ -177,8 +179,7 @@ function decreaseQuantity(elem, id){
 
   showCart()
 
-  
-  
+
 }
 
 
@@ -191,7 +192,7 @@ function showCart(){
 
   cartItems.forEach((item) => {
     count = count + item.quantity;
-    totalPrice = totalPrice + item.price;
+    totalPrice = totalPrice + (item.price * item.quantity);
 
     if(item != null){
       let li = document.createElement('li');
