@@ -148,6 +148,9 @@ function increaseQuantity(elem, id){
 
 function decreaseQuantity(elem, id){
 
+  console.log(elem)
+  elem.parentElement.classList.add('hidden')
+  elem.parentElement.previousElementSibling.classList.remove('hidden')
   
   // update quantity in object
   cartItems = cartItems.map((item) => {
