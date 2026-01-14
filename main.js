@@ -141,7 +141,7 @@ function increaseQuantity(elem, id){
   elem.previousElementSibling.innerText = cartItems[id].quantity
 
   // also update in cart item quantty
-  console.log('increase quantity')
+  showCart()
   
 }
 
@@ -161,7 +161,7 @@ function decreaseQuantity(elem, id){
   elem.nextElementSibling.innerText = cartItems[id].quantity
 
   // also update in cart item quantty
-  console.log('decrease quantity')
+  showCart()
   
 }
 
