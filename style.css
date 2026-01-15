@@ -18,6 +18,7 @@ body{
     background-color: rgb(243, 230, 220);
 }
 
+
 li{
     list-style: none;
 }
@@ -257,6 +258,17 @@ i{
 
 
 /* confirm order modal */
+/* .modal-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: none;
+}; */
+
+
 .confirm-order-modal[open]{
     padding: 20px;
     background-color: white;
@@ -271,8 +283,16 @@ i{
     height: 500px;
     display: flex;
     flex-direction: column;
-    /* gap: 10px; */
     justify-content: space-between;
+}
+
+.confirm-order-modal::backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .confirm-order-modal > span i{
@@ -368,3 +388,14 @@ i{
     border-radius: 20px;
     cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+
+

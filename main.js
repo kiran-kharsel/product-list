@@ -248,11 +248,10 @@ function cancelItem(id){
 
 // confirm order
 confirmOrderBtn.addEventListener('click', function(){
-  
   // if cart is empty the do not open modal
   if(cartItems.length > 0){
     // show modal
-    confirmOrderModal.show();
+    confirmOrderModal.showModal();
     showOrderDetails()
   }else{
     return;
