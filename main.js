@@ -1,5 +1,4 @@
 
-
 // product array
 const products = [
   {
@@ -72,6 +71,10 @@ const cartList = document.querySelector('.cart-list')
 const quantity = document.querySelector('.cart-heading span')
 const totalPriceElem = document.querySelector('.total-price span')
 const cart = document.querySelector('.cart')
+const confirmOrderBtn = cart.querySelector('.confirm-order-btn')
+
+//modal
+const confirmOrderModal = document.querySelector('.confirm-order-modal')
 
 
 // global vaariable
@@ -133,7 +136,7 @@ function addToCart(itemId, index){
 }
 
 
-// function increase or decrease item quantity
+// function increase item quantity
 function increaseQuantity(elem, id){
   // update quantity in object
   cartItems = cartItems.map((item) => {
@@ -152,6 +155,8 @@ function increaseQuantity(elem, id){
   
 }
 
+
+// function decrease item quantity
 function decreaseQuantity(elem, id){
   
   // update quantity in object
@@ -235,3 +240,16 @@ function cancelItem(id){
     }
   })
 }
+
+
+
+
+// confirm order
+confirmOrderBtn.addEventListener('click', function(){
+  console.log('order-confirm')
+
+  // if no order then dont open modal
+  // show modal
+  confirmOrderModal.show();
+
+})
