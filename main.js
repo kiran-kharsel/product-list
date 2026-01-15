@@ -75,6 +75,7 @@ const confirmOrderBtn = cart.querySelector('.confirm-order-btn')
 
 //modal
 const confirmOrderModal = document.querySelector('.confirm-order-modal')
+const confirmOrderList = document.querySelector('.ordered-list')
 const closeModalBtn = confirmOrderModal.querySelector('button')
 
 
@@ -247,17 +248,42 @@ function cancelItem(id){
 
 // confirm order
 confirmOrderBtn.addEventListener('click', function(){
-  console.log('order-confirm')
+  
+  // if cart is empty the do not open modal
+  if(cartItems.length > 0){
+    // show modal
+    confirmOrderModal.show();
+    showOrderDetails()
+  }else{
+    return;
+  }
+});
 
-  // if no order then dont open modal
-  // show modal
-  confirmOrderModal.show();
-  console.log(cartItems)
+
+
+function showOrderDetails(){
+  confirmOrderList.innerHTML = '';
+  let totalPrice = 0;
+
   cartItems.forEach((item) => {
+    totalPrice = totalPrice + (item.price * item.quantity);
+
     const li = document.createElement('li')
+    li.classList.add('ordered-item')
+    li.innerHTML = `
+      <img src=${item.img} alt="">
+      <div>
+        <p class="title">${item.title}</p>
+        <p class="price">${item.quantity}x <span>@${item.price}</span></p>
+      </div>
+      <p class="price">${item.quantity * item.price}</p>`;
     
-  })
-})
+    confirmOrderList.appendChild(li)
+  });
+
+  // order total amount
+  confirmOrderModal.querySelector('.order-total-price span').innerHTML = `$${totalPrice}`
+}
 
 
 //close modal
