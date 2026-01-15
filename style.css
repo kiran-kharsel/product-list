@@ -61,12 +61,23 @@ i{
     gap: 20px;
     height: 600px;
     overflow-y: scroll;
+    padding-right: 10px;
 }
 
-.item-list::-webkit-scrollbar {
-  display: none;
-  width: 0px; /* remove scrollbar space */
+
+.item-list::-webkit-scrollbar{
+    width: 5px;
 }
+
+.item-list::-webkit-scrollbar-track{
+    background: lightgray;
+}
+.item-list::-webkit-scrollbar-thumb{
+    background-color: chocolate;
+    border-radius: 2px;
+}
+
+
 
 .item-list .item{
     height: 240px;
@@ -161,7 +172,6 @@ i{
 }
 
 .cart .cart-list{
-    /* background-color: red; */
     max-height: 260px;
     overflow-y: scroll;
     padding-right: 10px;
