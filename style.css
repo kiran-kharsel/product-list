@@ -257,7 +257,7 @@ i{
 
 
 /* confirm order modal */
-.confirm-order-modal{
+.confirm-order-modal[open]{
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -268,7 +268,7 @@ i{
     top: 50%;
     transform: translate(-50%, -50%);
     width: 350px;
-    height: 450px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     /* gap: 10px; */
@@ -289,15 +289,48 @@ i{
     font-size: 0.8rem;
 }
 
-.confirm-order-modal div{
-    background-color: rebeccapurple;
+.confirm-order-modal > div{
+    background-color: rgb(255, 225, 203);
+    padding: 10px;
+    padding-bottom: 20px;
 }
+
+
 .confirm-order-modal ul{
-    background-color: saddlebrown;
     width: 100%;
     height: 220px;
 }
 
+.confirm-order-modal ul li{
+    display: grid;
+    grid-template-columns: 50px 1fr 40px;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 10px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.confirm-order-modal ul li img{
+    height: 50px;
+    width: 50px;
+}
+
+
+.confirm-order-modal ul li div .title{
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.confirm-order-modal ul li div span{
+    margin-left: 15px;
+    color: grey;
+}
+
+.confirm-order-modal ul li .price{
+    font-weight: 700;
+    color: black;
+}
 .confirm-order-modal div .order-total-price{
     display: flex;
     align-items: center;

@@ -75,6 +75,7 @@ const confirmOrderBtn = cart.querySelector('.confirm-order-btn')
 
 //modal
 const confirmOrderModal = document.querySelector('.confirm-order-modal')
+const closeModalBtn = confirmOrderModal.querySelector('button')
 
 
 // global vaariable
@@ -251,5 +252,17 @@ confirmOrderBtn.addEventListener('click', function(){
   // if no order then dont open modal
   // show modal
   confirmOrderModal.show();
+  console.log(cartItems)
+  cartItems.forEach((item) => {
+    const li = document.createElement('li')
+    
+  })
+})
 
+
+//close modal
+closeModalBtn.addEventListener('click', function(){
+  confirmOrderModal.close()
+  console.log('close modal')
+  
 })
