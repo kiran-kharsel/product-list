@@ -1,4 +1,3 @@
-
 // product array
 const products = [
   {
@@ -63,37 +62,28 @@ const products = [
   },
 ];
 
-
-
 // dom elem
-const itemList = document.querySelector('.item-list');
-const cartList = document.querySelector('.cart-list')
-const quantity = document.querySelector('.cart-heading span')
-const totalPriceElem = document.querySelector('.total-price span')
-const cart = document.querySelector('.cart')
-const confirmOrderBtn = cart.querySelector('.confirm-order-btn')
-const cartContainer = document.querySelector('.cart-container')
-const emptyCartElem = cartContainer.querySelector('.empty-cart')
+const itemList = document.querySelector(".item-list");
+const cartList = document.querySelector(".cart-list");
+const quantity = document.querySelector(".cart-heading span");
+const totalPriceElem = document.querySelector(".total-price span");
+const cart = document.querySelector(".cart");
+const confirmOrderBtn = cart.querySelector(".confirm-order-btn");
+const cartContainer = document.querySelector(".cart-container");
+const emptyCartElem = cartContainer.querySelector(".empty-cart");
 
 //modal
-const confirmOrderModal = document.querySelector('.confirm-order-modal')
-const confirmOrderList = document.querySelector('.ordered-list')
-const closeModalBtn = confirmOrderModal.querySelector('button')
-
+const confirmOrderModal = document.querySelector(".confirm-order-modal");
+const confirmOrderList = document.querySelector(".ordered-list");
+const closeModalBtn = confirmOrderModal.querySelector("button");
 
 // global vaariable
 let cartItems = [];
 
-// show cart ui when cartitems is not empty
-if(cartItems.length === 0){
-
-}
-
-
 // loop through array to create dynamic list html
 products.forEach((item, index) => {
-  let li = document.createElement('li');
-  li.classList.add('item');
+  let li = document.createElement("li");
+  li.classList.add("item");
   li.innerHTML = `
   <div class="item-img">
     <img src=${item.img} alt="item-img">
@@ -111,106 +101,100 @@ products.forEach((item, index) => {
     <p class="price">$${item.price}</p>
     </div>`;
 
-    itemList.appendChild(li);
+  itemList.appendChild(li);
+});
 
-})
-
-
-function addToCart(itemId, index){
-  
+function addToCart(itemId, index) {
   // quantity variable
   let itemQuantity = 1;
 
   // select all btn container
-  btnContainer = document.querySelectorAll('.btn-container')
-
+  btnContainer = document.querySelectorAll(".btn-container");
 
   // hide btn elem
-  btnContainer[index].querySelector('.add').classList.add('hidden')
-  btnContainer[index].querySelector('div').classList.remove('hidden')
+  btnContainer[index].querySelector(".add").classList.add("hidden");
+  btnContainer[index].querySelector("div").classList.remove("hidden");
 
   //set initial quantity
-  btnContainer[index].querySelector('div span').innerText = itemQuantity
-
+  btnContainer[index].querySelector("div span").innerText = itemQuantity;
 
   //select same item as id
-  let selectedItem = products.filter((item) => item.id === itemId)
+  let selectedItem = products.filter((item) => item.id === itemId);
   selectedItem[0].quantity = itemQuantity;
-  cartItems.push(...selectedItem)
+  cartItems.push(...selectedItem);
 
   // update cart
-  showCart()
-
+  showCart();
 }
-
 
 // function increase item quantity
-function increaseQuantity(elem, id){
+function increaseQuantity(elem, id) {
   // update quantity in object
   cartItems = cartItems.map((item) => {
-    return item.id === id ? {...item, quantity: item.quantity + 1} : item;
+    return item.id === id ? { ...item, quantity: item.quantity + 1 } : item;
   });
 
-
   // find object
-  const item = cartItems.find((item) => item.id === id)
+  const item = cartItems.find((item) => item.id === id);
   // update in span
-  elem.previousElementSibling.innerText = item.quantity
-
+  elem.previousElementSibling.innerText = item.quantity;
 
   // also update in cart item quantty
-  showCart()
-  
+  showCart();
 }
 
-
 // function decrease item quantity
-function decreaseQuantity(elem, id){
-  
+function decreaseQuantity(elem, id) {
   // update quantity in object
   cartItems = cartItems.map((item) => {
-    return item.id === id ? {...item, quantity: item.quantity - 1} : item;
+    return item.id === id ? { ...item, quantity: item.quantity - 1 } : item;
   });
 
-
   // find object
-  const item = cartItems.find((item) => item.id === id)
-  if(item.quantity > 0){
-     // update in span
-    elem.nextElementSibling.innerText = item.quantity
+  const item = cartItems.find((item) => item.id === id);
+  if (item.quantity > 0) {
+    // update in span
+    elem.nextElementSibling.innerText = item.quantity;
   } else {
     // change button class
-    elem.parentElement.classList.add('hidden')
-    elem.parentElement.previousElementSibling.classList.remove('hidden')
+    elem.parentElement.classList.add("hidden");
+    elem.parentElement.previousElementSibling.classList.remove("hidden");
+
+    // show empty cart info
+    emptyCartElem.classList.remove("hidden");
+    cart.classList.add("hidden");
   }
 
   // filter out if quantity is zero
-  cartItems = cartItems.filter((item) => item.quantity !== 0)
+  cartItems = cartItems.filter((item) => item.quantity !== 0);
 
-  showCart()
-
+  showCart();
 }
 
-
-
 // function to show cart ui
-function showCart(){
+function showCart() {
   // add hidden class to empty-cart and remove hidden class from cart elem
-  emptyCartElem.classList.add('hidden')
-  cart.classList.remove('hidden')
+  
+  // show cart ui when cartitems is not empty
+  if (cartItems.length === 0) {
+    emptyCartElem.classList.remove("hidden");
+    cart.classList.add("hidden");
+  }else{
+    emptyCartElem.classList.add("hidden");
+  cart.classList.remove("hidden");
+  }
 
-
-  cartList.innerHTML = '';
+  cartList.innerHTML = "";
   let count = 0;
   let totalPrice = 0;
 
   cartItems.forEach((item) => {
     count = count + item.quantity;
-    totalPrice = totalPrice + (item.price * item.quantity);
+    totalPrice = totalPrice + item.price * item.quantity;
 
-    if(item != null){
-      let li = document.createElement('li');
-      li.classList.add('cart-item')
+    if (item != null) {
+      let li = document.createElement("li");
+      li.classList.add("cart-item");
       li.innerHTML = `
       <div class="item-detail">
         <p class="title">${item.title}</p>
@@ -224,62 +208,56 @@ function showCart(){
           <i class='bx  bx-x-circle'></i> 
       </button>`;
 
-      cartList.appendChild(li)
+      cartList.appendChild(li);
     }
   });
 
   quantity.innerText = `(${count})`;
-  totalPriceElem.innerText = `$${totalPrice.toLocaleString()}`
+  totalPriceElem.innerText = `$${totalPrice.toLocaleString()}`;
 }
 
-
 // cancel item function
-function cancelItem(id){
+function cancelItem(id) {
   // remove from array
-  cartItems = cartItems.filter((item) => item.id !== id)
+  cartItems = cartItems.filter((item) => item.id !== id);
 
   // update ui
   showCart();
-  
-  // change button 
-  products.forEach((item,index)=> {
-    if(item.id === id){
+
+  // change button
+  products.forEach((item, index) => {
+    if (item.id === id) {
       // select all btn container
-      btnContainer = document.querySelectorAll('.btn-container')
+      btnContainer = document.querySelectorAll(".btn-container");
 
       // hide btn elem
-      btnContainer[index].querySelector('.add').classList.remove('hidden')
-      btnContainer[index].querySelector('div').classList.add('hidden')
+      btnContainer[index].querySelector(".add").classList.remove("hidden");
+      btnContainer[index].querySelector("div").classList.add("hidden");
     }
-  })
+  });
 }
 
-
-
-
 // confirm order
-confirmOrderBtn.addEventListener('click', function(){
+confirmOrderBtn.addEventListener("click", function () {
   // if cart is empty the do not open modal
-  if(cartItems.length > 0){
+  if (cartItems.length > 0) {
     // show modal
     confirmOrderModal.showModal();
-    showOrderDetails()
-  }else{
+    showOrderDetails();
+  } else {
     return;
   }
 });
 
-
-
-function showOrderDetails(){
-  confirmOrderList.innerHTML = '';
+function showOrderDetails() {
+  confirmOrderList.innerHTML = "";
   let totalPrice = 0;
 
   cartItems.forEach((item) => {
-    totalPrice = totalPrice + (item.price * item.quantity);
+    totalPrice = totalPrice + item.price * item.quantity;
 
-    const li = document.createElement('li')
-    li.classList.add('ordered-item')
+    const li = document.createElement("li");
+    li.classList.add("ordered-item");
     li.innerHTML = `
       <img src=${item.img} alt="">
       <div>
@@ -287,18 +265,18 @@ function showOrderDetails(){
         <p class="price">${item.quantity}x <span>@${item.price}</span></p>
       </div>
       <p class="price">${item.quantity * item.price}</p>`;
-    
-    confirmOrderList.appendChild(li)
+
+    confirmOrderList.appendChild(li);
   });
 
   // order total amount
-  confirmOrderModal.querySelector('.order-total-price span').innerHTML = `$${totalPrice}`
+  confirmOrderModal.querySelector(
+    ".order-total-price span"
+  ).innerHTML = `$${totalPrice}`;
 }
 
-
 //close modal
-closeModalBtn.addEventListener('click', function(){
-  confirmOrderModal.close()
-  console.log('close modal')
-  
-})
+closeModalBtn.addEventListener("click", function () {
+  confirmOrderModal.close();
+  console.log("close modal");
+});
