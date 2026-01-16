@@ -72,6 +72,8 @@ const quantity = document.querySelector('.cart-heading span')
 const totalPriceElem = document.querySelector('.total-price span')
 const cart = document.querySelector('.cart')
 const confirmOrderBtn = cart.querySelector('.confirm-order-btn')
+const cartContainer = document.querySelector('.cart-container')
+const emptyCartElem = cartContainer.querySelector('.empty-cart')
 
 //modal
 const confirmOrderModal = document.querySelector('.confirm-order-modal')
@@ -82,6 +84,10 @@ const closeModalBtn = confirmOrderModal.querySelector('button')
 // global vaariable
 let cartItems = [];
 
+// show cart ui when cartitems is not empty
+if(cartItems.length === 0){
+
+}
 
 
 // loop through array to create dynamic list html
@@ -189,6 +195,11 @@ function decreaseQuantity(elem, id){
 
 // function to show cart ui
 function showCart(){
+  // add hidden class to empty-cart and remove hidden class from cart elem
+  emptyCartElem.classList.add('hidden')
+  cart.classList.remove('hidden')
+
+
   cartList.innerHTML = '';
   let count = 0;
   let totalPrice = 0;
