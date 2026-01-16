@@ -40,6 +40,9 @@ i{
     color: chocolate;
 }
 
+.hidden{
+    display: none;
+}
 
 /* list */
 
@@ -162,13 +165,11 @@ i{
     width: 100%;
     background-color: white;
     border-radius: 10px;
-    max-height: 400px;
+    max-height: 500px;
     height: fit-content;
 }
 
-.cart-container .hidden{
-    display: none;
-}
+
 
 .cart-container .empty-cart{
     width: 100%;
@@ -194,10 +195,14 @@ i{
     width: 100%;
     padding: 20px 0px;
     padding-bottom: 20px;
-    display: hidden;
+    display: flex;
     flex-direction: column;
     gap: 20px;
    
+}
+
+.cart.hidden{
+    display: none;
 }
 
 .cart h2{
@@ -290,16 +295,6 @@ i{
 
 
 /* confirm order modal */
-/* .modal-container{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    display: none;
-}; */
-
 
 .confirm-order-modal[open]{
     padding: 20px;
