@@ -75,7 +75,7 @@ const emptyCartElem = cartContainer.querySelector(".empty-cart");
 //modal
 const confirmOrderModal = document.querySelector(".confirm-order-modal");
 const confirmOrderList = document.querySelector(".ordered-list");
-const closeModalBtn = confirmOrderModal.querySelector("button");
+const newOrderBtn = confirmOrderModal.querySelector("#new-order-button");
 
 // global vaariable
 let cartItems = [];
@@ -91,7 +91,7 @@ products.forEach((item, index) => {
       <button onclick="addToCart(${item.id}, ${index})" class="add"><i class='bx  bx-cart'></i>  add to cart</button>
       <div class="hidden">
         <i onclick="decreaseQuantity(this, ${item.id})" role="button" class='bx  bx-minus-circle'></i> 
-        <span>2</span>
+        <span></span>
         <i onclick="increaseQuantity(this, ${item.id})" role="button" class='bx  bx-plus-circle'></i> 
       </div>
     </div>
@@ -155,14 +155,6 @@ function decreaseQuantity(elem, id) {
   if (item.quantity > 0) {
     // update in span
     elem.nextElementSibling.innerText = item.quantity;
-  } else {
-    // change button class
-    elem.parentElement.classList.add("hidden");
-    elem.parentElement.previousElementSibling.classList.remove("hidden");
-
-    // show empty cart info
-    emptyCartElem.classList.remove("hidden");
-    cart.classList.add("hidden");
   }
 
   // filter out if quantity is zero
@@ -171,17 +163,34 @@ function decreaseQuantity(elem, id) {
   showCart();
 }
 
+
+
+
+
+
+
+
 // function to show cart ui
 function showCart() {
-  // add hidden class to empty-cart and remove hidden class from cart elem
-  
+    
   // show cart ui when cartitems is not empty
   if (cartItems.length === 0) {
     emptyCartElem.classList.remove("hidden");
     cart.classList.add("hidden");
+
+    // loop through btn and clear class list
+    btnContainer = document.querySelectorAll(".btn-container");
+    //console.log(btnContainer)
+    btnContainer.forEach((btn) => {
+      let [button, div] = btn.children;
+      button.classList.remove('hidden')
+      div.classList.add('hidden')
+    });
+
+    
   }else{
     emptyCartElem.classList.add("hidden");
-  cart.classList.remove("hidden");
+    cart.classList.remove("hidden");
   }
 
   cartList.innerHTML = "";
@@ -276,7 +285,9 @@ function showOrderDetails() {
 }
 
 //close modal
-closeModalBtn.addEventListener("click", function () {
+newOrderBtn.addEventListener("click", function () {
+  // empty cart arrays and update ui
+  cartItems = [];
+  showCart();
   confirmOrderModal.close();
-  console.log("close modal");
 });

@@ -434,6 +434,40 @@ i{
 
 
 
+/* media queries for mobile */
+@media screen and (max-width: 600px) {
+  .container{
+    grid-template-columns: none;
+    grid-template-rows: 2fr, 300px ;
+  }
+
+  .item-list{
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    height: auto;
+  }
+
+  .item-list .item{
+    width: 90%;
+    margin-inline: auto;
+    justify-content: none;
+    gap: 20px;
+  }
+
+  .item .item-img{
+    height: 200px;
+   }
+
+   .item-list .details{
+    height: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+   }
+}
 
 
-
+/* media queries for tablet */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  /* CSS styles for tablet devices */
+}
