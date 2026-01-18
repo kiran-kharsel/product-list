@@ -281,7 +281,7 @@ function showOrderDetails() {
   // order total amount
   confirmOrderModal.querySelector(
     ".order-total-price span"
-  ).innerHTML = `$${totalPrice}`;
+  ).innerHTML = `$${totalPrice.toLocaleString()}`;
 }
 
 //close modal
