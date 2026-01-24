@@ -442,11 +442,15 @@ i{
 
 
 /* media queries for mobile */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   .container{
     height: 100%;
     grid-template-columns: 1fr;
     overflow-y: auto;
+  }
+
+  .container::-webkit-scrollbar{
+    width: 0px;
   }
 
 
@@ -483,6 +487,14 @@ i{
 
 
 /* media queries for tablet */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  /* CSS styles for tablet devices */
+@media screen and (min-width: 650px) and (max-width: 1024px){
+    .container{
+        width: 95%;
+        grid-template-columns: 2fr 250px;
+        gap: 30px;
+    }
+    
+    .item-list{
+        grid-template-columns: 1fr 1fr;
+    }
 }
