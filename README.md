@@ -8,3 +8,15 @@ A simple yet functional shopping cart application built entirely with vanilla Ja
 - 🛍️ Cart Management: Update item quantities, remove products, and view total price in real time.
 - 🔄 Persistent State: Cart data is maintained during navigation using JavaScript logic.
 - 🎨 Responsive Design: Works seamlessly across desktop and mobile devices
+
+
+## 📸 Demo
+
+### desktop view
+![desktop view](/assets/desktop.png)
+
+### confirm order
+![desktop view](/assets/confirm-order.png)
+
+### mobile view
+![desktop view](/assets/mobile-view.png)
